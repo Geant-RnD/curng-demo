@@ -1,12 +1,12 @@
 //---------------------------------*-C++-*-----------------------------------//
 /*!
- * \file   curng/Traits.hh
+ * \file   curng/Traits.h
  * \brief  Traits class declaration.
  * \note   Copyright (c) 2019 Oak Ridge National Laboratory, UT-Battelle, LLC.
  */
 //---------------------------------------------------------------------------//
-#ifndef curng_Traits_hh
-#define curng_Traits_hh
+#ifndef curng_Traits_h
+#define curng_Traits_h
 
 #ifdef __NVCC__
 #include <thrust/vector.h>
@@ -38,7 +38,7 @@ class VectorTraits
 } // namespace curng
 
 //---------------------------------------------------------------------------//
-#endif // curng_Traits_hh
+#endif // curng_Traits_h
 //---------------------------------------------------------------------------//
 // end of curng/Traits.hh
 //---------------------------------------------------------------------------//

@@ -1,23 +1,25 @@
 //---------------------------------*-C++-*-----------------------------------//
 /*!
- * \file   curng/random.cuh
- * \brief  random CUDA-device class declarations.
+ * \file   curng/Kernel.cpp
+ * \brief  Kernel class definitions.
  * \note   Copyright (c) 2019 Oak Ridge National Laboratory, UT-Battelle, LLC.
  */
 //---------------------------------------------------------------------------//
-#ifndef curng_include_curng_random_cuh
-#define curng_include_curng_random_cuh
 
-#include "Macros.cuh"
+#include "Kernel.h"
 
-#ifdef __NVCC__
-#include "cuda/random.cuh"
-#else
-#include "cpp/random.h"
-#endif
+namespace curng
+{
+inline namespace CURNG_LANG
+{
+//---------------------------------------------------------------------------//
+void execute(int)
+{}
 
 //---------------------------------------------------------------------------//
-#endif // curng_include_curng_random_cuh
+} // namespace CURNG_LANG
+} // namespace curng
+
 //---------------------------------------------------------------------------//
-// end of curng/include/curng/random.cuh
+// end of src/curng/Kernel.cpp
 //---------------------------------------------------------------------------//

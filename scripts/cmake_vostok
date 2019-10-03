@@ -1,7 +1,10 @@
-#!/bin/sh -ex
+#!/bin/sh -e
 BUILD=/rnsdhpc/code/build/curng
 SOURCE=/rnsdhpc/code/src/curng
 
+module load cmake ninja
+
+set -x
 test -d "$BUILD" || mkdir -p "$BUILD"
 cd $BUILD
 

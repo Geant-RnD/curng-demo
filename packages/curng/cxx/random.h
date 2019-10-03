@@ -1,6 +1,6 @@
 //---------------------------------*-C++-*-----------------------------------//
 /*!
- * \file   curng/cxx/random.cuh
+ * \file   curng/cxx/random.h
  * \brief  random CUDA-device class declarations.
  * \note   Copyright (c) 2019 Oak Ridge National Laboratory, UT-Battelle, LLC.
  */
@@ -48,5 +48,5 @@ class random
 //---------------------------------------------------------------------------//
 #endif // curng_include_curng_cxx_random_cuh
 //---------------------------------------------------------------------------//
-// end of curng/include/curng/cxx/random.cuh
+// end of random.h
 //---------------------------------------------------------------------------//

@@ -32,7 +32,7 @@ else()
   endif()
 endif()
 
-set(CURNG_VERSION_INP "${CMAKE_CURRENT_LIST_DIR}/curng_version.cpp.in"
+set(CURNG_VERSION_INP "${CMAKE_CURRENT_LIST_DIR}/curng_version.cpp.in")
 
 macro(curng_configure_version OUTPUTFILE)
   configure_file("${CURNG_VERSION_INP}" "${OUTPUTFILE}" @ONLY)
