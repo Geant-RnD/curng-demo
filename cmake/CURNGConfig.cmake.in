@@ -1,0 +1,11 @@
+get_filename_component(CURNG_CMAKE_DIR "${CMAKE_CURRENT_LIST_FILE}" PATH)
+include(CMakeFindDependencyMacro)
+
+list(APPEND CMAKE_MODULE_PATH ${CURNG_CMAKE_DIR})
+
+if (NOT TARGET @CURNG_NAMESPACE@flc)
+  include("${CURNG_CMAKE_DIR}/CURNGTargets.cmake")
+endif()
+
+set(CURNG_LIBRARIES @CURNG_LIBRARIES@)
+

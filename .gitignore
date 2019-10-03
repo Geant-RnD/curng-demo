@@ -1,0 +1,17 @@
+.nfs*
+*~
+*.swp
+*.cache
+*.aux
+*.log
+*.lof
+*.toc
+*.pdftex_t
+*.out
+*.pyc
+*.synctex.gz
+.DS_Store
+/compile_commands.json
+/[bB][uU][iI][lL][dD]*/
+/spack-build*
+/.vscode
