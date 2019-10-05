@@ -1,4 +1,4 @@
-//---------------------------------*-C++-*-----------------------------------//
+// vim: set ft=cuda: -------------*-CUDA-*-----------------------------------//
 /*!
  * \file   curng/Kernel.h
  * \brief  Kernel declarations.
@@ -12,11 +12,17 @@
 
 namespace curng
 {
+//---------------------------------------------------------------------------//
+
+struct KernelParams;
+
 inline namespace CURNG_LANG
 {
 //---------------------------------------------------------------------------//
 
-void execute(int i);
+class MultiStateView;
+
+__host__ void launch_kernel(MultiStateView view, KernelParams params);
 
 //---------------------------------------------------------------------------//
 } // namespace CURNG_LANG

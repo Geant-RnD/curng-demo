@@ -9,7 +9,7 @@
 #define curng_cxx_CudaVars_h
 
 #include "CudaTypes.h"
-#include "curng/Macros.h"
+#include "CudaMacros.h"
 
 //! Dimensions of the grid (1,1,1)
 #define gridDim (::curng::cxx::UnitDim3())
@@ -24,28 +24,29 @@
 
 namespace curng
 {
-namespace cxx
+inline namespace cxx
 {
-//! Return the dimensions (1,1,1)
-__forceinline__ dim3 UnitDim3()
+//---------------------------------------------------------------------------//
+
+//! Return unit dimensions (1,1,1)
+constexpr __forceinline__ dim3 UnitDim3()
 {
     return dim3();
 }
 
-__forceinline__ uint3 ZeroUint3()
+constexpr __forceinline__ uint3 ZeroUint3()
 {
-    uint3 result = {0,0,0};
-    return result;
+    return {0,0,0};
 }
 
-__forceinline__ int UnitInt()
+constexpr __forceinline__ int UnitInt()
 {
     return 1;
 }
 
 //---------------------------------------------------------------------------//
-} // namespace src
-} // namespace src
+} // namespace cxx
+} // namespace curng
 
 //---------------------------------------------------------------------------//
 #endif // curng_cxx_CudaVars_h

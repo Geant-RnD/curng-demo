@@ -1,19 +1,21 @@
 //---------------------------------*-C++-*-----------------------------------//
 /*!
- * \file   curng/CudaTypes.h
- * \brief  Cuda types
+ * \file   curng/HostTraits.h
+ * \brief  HostTraits class declaration.
  * \note   Copyright (c) 2019 Oak Ridge National Laboratory, UT-Battelle, LLC.
  */
 //---------------------------------------------------------------------------//
-#ifndef curng_CudaTypes_h
-#define curng_CudaTypes_h
+#ifndef curng_HostTraits_h
+#define curng_HostTraits_h
 
-#if !defined(__CUDACC__) && !defined(__NVCC__)
-#include "cxx/CudaTypes.h"
+#ifdef __CUDACC__
+#include "cuda/HostTraits.h"
+#else
+#include "cxx/HostTraits.h"
 #endif
 
 //---------------------------------------------------------------------------//
-#endif // curng_CudaTypes_h
+#endif // curng_HostTraits_h
 //---------------------------------------------------------------------------//
-// end of src/curng/CudaTypes.h
+// end of HostTraits.h
 //---------------------------------------------------------------------------//

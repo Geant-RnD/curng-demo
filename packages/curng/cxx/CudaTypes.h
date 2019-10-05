@@ -10,7 +10,7 @@
 
 namespace curng
 {
-namespace cxx
+inline namespace cxx
 {
 //---------------------------------------------------------------------------//
 //! Integers with 3 components
@@ -37,7 +37,7 @@ struct float3
 struct double3
 {
     double x, y, z;
-}
+};
 
 //---------------------------------------------------------------------------//
 } // namespace cxx

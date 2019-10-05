@@ -1,44 +1,34 @@
 //---------------------------------*-C++-*-----------------------------------//
 /*!
- * \file   curng/Traits.h
- * \brief  Traits class declaration.
+ * \file   curng/cuda/HostTraits.h
+ * \brief  HostTraits class declaration.
  * \note   Copyright (c) 2019 Oak Ridge National Laboratory, UT-Battelle, LLC.
  */
 //---------------------------------------------------------------------------//
-#ifndef curng_Traits_h
-#define curng_Traits_h
+#ifndef curng_cuda_HostTraits_h
+#define curng_cuda_HostTraits_h
 
-#ifdef __NVCC__
 #include <thrust/vector.h>
-#endif
+#include <thrust/device_ptr.h>
 
 namespace curng
 {
-namespace cxx
+inline namespace cuda
 {
 template<class T>
-class VectorTraits
+struct VectorTraits
 {
-    using value_type = T;
-    using Vector     = std::vector<T>;
-};
-} // namespace cxx
-
-#ifdef __NVCC__
-namespace cuda
-{
-template<class T>
-class VectorTraits
-{
-    using value_type = T;
-    using Vector     = thrust::vector<T>;
+    using size_type     = std::size_t;
+    using value_type    = T;
+    using HostVector    = thrust::host_vector<T>;
+    using DeviceVector  = thrust::device_vector<T>;
+    using DevicePointer = thrust::device_pointer<T>;
 };
 } // namespace cuda
-#endif
 } // namespace curng
 
 //---------------------------------------------------------------------------//
-#endif // curng_Traits_h
+#endif // curng_cuda_HostTraits_h
 //---------------------------------------------------------------------------//
-// end of curng/Traits.hh
+// end of HostTraits.h
 //---------------------------------------------------------------------------//

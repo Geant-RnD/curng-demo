@@ -104,7 +104,9 @@ set(CURNG_VERSION_CPP "${CMAKE_CURRENT_BINARY_DIR}/curng_version.cpp")
 curng_configure_version("${CURNG_VERSION_CPP}")
 
 curng_add_library(curng "${CURNG_VERSION_CPP}"
-  ${CURNG_SRC_DIR}/curng/Kernel.cpp)
+  ${CURNG_SRC_DIR}/curng/Kernel.cpp
+  ${CURNG_SRC_DIR}/curng/MultiStateVector.cpp
+  )
 
 #---------------------------------------------------------------------------#
 # INSTALLATION
@@ -114,7 +116,7 @@ curng_add_library(curng "${CURNG_VERSION_CPP}"
 install(
   DIRECTORY "${CURNG_SRC_DIR}/"
   DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}"
-  REGEX "^(.(cu|cc)|detail)$" EXCLUDE
+  REGEX "^(.(cu|cpp)|detail)$" EXCLUDE
 )
 
 install(EXPORT CURNG-targets

@@ -1,19 +1,19 @@
 //---------------------------------*-C++-*-----------------------------------//
 /*!
- * \file   curng/CudaTypes.h
- * \brief  Cuda types
+ * \file   curng/DeviceVars.h
+ * \brief  When compiling a non-CUDA kernel, define CUDA variables.
  * \note   Copyright (c) 2019 Oak Ridge National Laboratory, UT-Battelle, LLC.
  */
 //---------------------------------------------------------------------------//
-#ifndef curng_CudaTypes_h
-#define curng_CudaTypes_h
+#ifndef curng_DeviceVars_h
+#define curng_DeviceVars_h
 
-#if !defined(__CUDACC__) && !defined(__NVCC__)
-#include "cxx/CudaTypes.h"
+#if !defined(__CUDACC__)
+#  include "cxx/CudaVars.h"
 #endif
 
 //---------------------------------------------------------------------------//
-#endif // curng_CudaTypes_h
+#endif // curng_DeviceVars_h
 //---------------------------------------------------------------------------//
-// end of src/curng/CudaTypes.h
+// end of curng/DeviceVars.h
 //---------------------------------------------------------------------------//

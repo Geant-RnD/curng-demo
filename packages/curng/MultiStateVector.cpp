@@ -1,19 +1,25 @@
 //---------------------------------*-C++-*-----------------------------------//
 /*!
- * \file   curng/CudaTypes.h
- * \brief  Cuda types
+ * \file   curng/MultiStateVector.cpp
+ * \brief  MultiStateVector class definitions.
  * \note   Copyright (c) 2019 Oak Ridge National Laboratory, UT-Battelle, LLC.
  */
 //---------------------------------------------------------------------------//
-#ifndef curng_CudaTypes_h
-#define curng_CudaTypes_h
 
-#if !defined(__CUDACC__) && !defined(__NVCC__)
-#include "cxx/CudaTypes.h"
-#endif
+#include "MultiStateVector.h"
+
+namespace curng
+{
+inline namespace CURNG_LANG
+{
+//---------------------------------------------------------------------------//
+//! Default destructor
+MultiStateVector::~MultiStateVector() = default;
 
 //---------------------------------------------------------------------------//
-#endif // curng_CudaTypes_h
+} // namespace CURNG_LANG
+} // namespace curng
+
 //---------------------------------------------------------------------------//
-// end of src/curng/CudaTypes.h
+// end of curng/MultiStateVector.cpp
 //---------------------------------------------------------------------------//
