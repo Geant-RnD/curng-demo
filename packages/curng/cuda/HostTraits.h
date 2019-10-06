@@ -8,7 +8,8 @@
 #ifndef curng_cuda_HostTraits_h
 #define curng_cuda_HostTraits_h
 
-#include <thrust/vector.h>
+#include <thrust/host_vector.h>
+#include <thrust/device_vector.h>
 #include <thrust/device_ptr.h>
 
 namespace curng
@@ -16,13 +17,13 @@ namespace curng
 inline namespace cuda
 {
 template<class T>
-struct VectorTraits
+struct HostTraits
 {
     using size_type     = std::size_t;
     using value_type    = T;
     using HostVector    = thrust::host_vector<T>;
     using DeviceVector  = thrust::device_vector<T>;
-    using DevicePointer = thrust::device_pointer<T>;
+    using DevicePointer = thrust::device_ptr<T>;
 };
 } // namespace cuda
 } // namespace curng

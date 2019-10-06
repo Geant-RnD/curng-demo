@@ -118,7 +118,7 @@ function(curng_add_library LIBNAME)
     # Add C++ source file
     list(APPEND _SOURCES "${CURNG_SRC_DIR}/${_FILENAME}")
 
-    if (USE_CUDA)
+    if (CURNG_USE_CUDA)
       get_filename_component(_CU_FILENAME "${_FILENAME}" NAME_WE)
       set(_CU_FILENAME
           "${CURNG_GENSRC_DIR}/${_PACKAGE_SUBDIR}${_CU_FILENAME}.cu")
@@ -149,7 +149,7 @@ function(curng_add_library LIBNAME)
       $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>
   )
 
-  if (USE_CUDA)
+  if (CURNG_USE_CUDA)
     target_compile_options(${LIBNAME}
       PUBLIC $<$<COMPILE_LANGUAGE:CUDA>:${CURNG_CUDA_FLAGS}>
     )

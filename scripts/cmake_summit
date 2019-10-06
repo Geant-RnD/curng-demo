@@ -1,0 +1,34 @@
+#!/bin/sh -e
+
+if [ "$SHLVL" -ne 1 ]; then
+  echo "Warning: you should probably 'source' this file instead of
+  running it (\$SHLVL=${SHLVL})"
+fi
+
+CURNG_BUILD="$(mktemp -d)/build/curng"
+CURNG_SOURCE="${HOME}/.local/src/curng"
+CURNG_INSTALL="${PROJWORK}/${PROJID}/s3j/curng"
+PROJID="csc254"
+
+function build_curng() {
+  test -d "${CURNG_BUILD}" || mkdir -p "${CURNG_BUILD}"
+  cd "${CURNG_BUILD}"
+  cmake \
+    -D CURNG_USE_CUDA=ON \
+    -D BUILD_SHARED_LIBS=OFF \
+    -D CMAKE_CUDA_FLAGS="-arch=sm_70" \
+    -D CMAKE_CXX_FLAGS="-Wall -Wextra" \
+    -D CMAKE_INSTALL_PREFIX="${CURNG_INSTALL}" \
+    "${CURNG_SOURCE}" || return 1
+  make || return 1
+}
+
+function install_curng() {
+  make install/fast || return 1
+  cd "${CURNG_INSTALL}"
+}
+
+module load gcc cuda
+set -x
+build_curng && install_curng
+set +x
