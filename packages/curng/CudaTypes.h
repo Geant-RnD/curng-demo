@@ -8,7 +8,7 @@
 #ifndef curng_CudaTypes_h
 #define curng_CudaTypes_h
 
-#if !defined(__CUDACC__) && !defined(__NVCC__)
+#if !defined(__CUDACC__)
 #include "cxx/CudaTypes.h"
 #endif
 

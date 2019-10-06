@@ -1,0 +1,16 @@
+/*-----------------------------------*-C-*-----------------------------------*/
+/*!
+ * \file   curng/config.h
+ * \brief  CURNG configure file
+ * \note   Copyright (c) 2019 Oak Ridge National Laboratory, UT-Battelle, LLC.
+ */
+/*---------------------------------------------------------------------------*/
+#ifndef curng_cmake_config_h
+#define curng_cmake_config_h
+
+#cmakedefine HAVE_CUDA
+
+#endif /* curng_cmake_config_h */
+/*---------------------------------------------------------------------------*/
+/* end of curng/cmake/config.h */
+/*---------------------------------------------------------------------------*/

@@ -1,7 +1,7 @@
 // vim: set ft=cuda: --------------*-C++-*-----------------------------------//
 /*!
  * \file   curng/cxx/CudaMacros.h
- * \brief  Cuda macro defintions for compiling without NVCC.
+ * \brief  Cuda macro defintions for compiling without CUDA support.
  * \note   Copyright (c) 2019 Oak Ridge National Laboratory, UT-Battelle, LLC.
  */
 //---------------------------------------------------------------------------//

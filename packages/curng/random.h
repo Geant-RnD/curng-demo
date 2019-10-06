@@ -10,7 +10,7 @@
 
 #include "Macros.h"
 
-#ifdef __NVCC__
+#ifdef __CUDACC__
 #include "cuda/random.cuh"
 #else
 #include "cpp/random.h"

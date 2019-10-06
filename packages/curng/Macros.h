@@ -19,7 +19,7 @@
 #else
   /* CUDA is DISABLED */
 #  define CURNG_LANG cxx
-#
+
 #  include "cxx/CudaMacros.h"
 #endif
 

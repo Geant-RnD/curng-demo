@@ -5,5 +5,7 @@
 # Distributed under an MIT open source license: see LICENSE for details.
 #---------------------------------------------------------------------------#
 
-message("Examples are not yet implemented")
-
+add_executable(example
+  example.cc
+  )
+target_link_libraries(example curng)

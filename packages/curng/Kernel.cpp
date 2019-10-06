@@ -41,12 +41,13 @@ __global__ void execute_kernel(MultiStateView view)
 //---------------------------------------------------------------------------//
 __host__ void launch_kernel(MultiStateView view, KernelParams params)
 {
-    REQUIRE(params.blocks > 0 && params.threads_per_block > 0);
 #ifdef __CUDACC__
+    REQUIRE(params.blocks > 0 && params.threads_per_block >= 32);
     REQUIRE(params.target == KernelParams::kDevice);
     execute_kernel<<<params.blocks, params.threads_per_block>>>(view);
 #else
     REQUIRE(params.target == KernelParams::kHost);
+    REQUIRE(params.blocks == 1 && params.threads_per_block == 1);
     execute_kernel(view);
 #endif
 }
