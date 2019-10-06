@@ -47,8 +47,9 @@ list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 
 # Enable testing based on BUILD_TESTING flag
 include(CTest)
-# Configure version info
-include(curng_version)
+
+# CURNG utility scripts
+include(CURNGUtils)
 
 #---------------------------------------------------------------------------#
 # LIBRARY
@@ -61,107 +62,26 @@ set(CURNG_GENSRC_DIR "${CMAKE_CURRENT_BINARY_DIR}/generated")
 set(CURNG_INSTALL_CONFIGDIR "${CMAKE_INSTALL_LIBDIR}/cmake/CURNG")
 set(CURNG_NAMESPACE CURNG::)
 
-# List of libraries exported by cmake/CURNGConfig.cmake.in
-set(CURNG_LIBRARIES)
-
 if (CURNG_USE_CUDA)
   enable_language(CUDA)
 endif()
 
-function(curng_add_library LIBNAME)
-  cmake_parse_arguments(PARSE_ARGV 0 "_ARG" "" "PACKAGE" "SOURCE;POLYSOURCE")
-
-  if (_ARG_PACKAGE)
-    set(_PACKAGE_SUBDIR "${_ARG_PACKAGE}/")
-  endif()
-
-  set(_SOURCES)
-  foreach(_FILENAME IN LISTS _ARG_SOURCE)
-    if (NOT IS_ABSOLUTE "${_FILENAME}")
-      message(STATUS "Converting to abspath: ${_FILENAME}")
-      set(_FILENAME "${CURNG_SRC_DIR}/${_PACKAGE_SUBDIR}${_FILENAME}")
-    endif()
-    list(APPEND _SOURCES "${_FILENAME}")
-  endforeach()
-
-  foreach(_FILENAME IN LISTS _ARG_POLYSOURCE)
-    if (IS_ABSOLUTE _FILENAME)
-      message(SEND_ERROR
-        "Polyglot source '${_FILENAME}' must be a relative path")
-    endif()
-    set(_FILENAME "${_PACKAGE_SUBDIR}${_FILENAME}")
-
-    # Add C++ source file
-    list(APPEND _SOURCES "${CURNG_SRC_DIR}/${_FILENAME}")
-
-    if (USE_CUDA)
-      get_filename_component(_CU_FILENAME "${_FILENAME}" NAME_WE)
-      set(_CU_FILENAME
-          "${CURNG_GENSRC_DIR}/${_PACKAGE_SUBDIR}${_CU_FILENAME}.cu")
-      if (NOT EXISTS "${_CU_FILENAME}")
-        # Generate CUDA stub
-        file(WRITE "${_CU_FILENAME}"
-          "#include \"${_FILENAME}\""
-          "")
-      endif()
-
-      # Add stub to source file list
-      list(APPEND _SOURCES "${_CU_FILENAME}")
-    endif()
-  endforeach()
-
-  message(STATUS "Add library sources: ${_SOURCES}")
-  add_library(${LIBNAME} ${_SOURCES})
-
-  # Compile C++ code with C++14
-  target_compile_features(${LIBNAME}
-    PUBLIC
-      cxx_std_14
-  )
-
-  target_include_directories(${LIBNAME}
-    PUBLIC
-      $<BUILD_INTERFACE:${CURNG_SRC_DIR}>
-      $<BUILD_INTERFACE:${CURNG_GENSRC_DIR}>
-      $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>
-  )
-
-  if (USE_CUDA)
-    target_compile_options(${LIBNAME}
-      PUBLIC $<$<COMPILE_LANGUAGE:CUDA>:${CURNG_CUDA_FLAGS}>
-    )
-    set_target_properties(${LIBNAME}
-      PROPERTIES CUDA_SEPARABLE_COMPILATION ON
-    )
-  endif()
-
-  # Set up installation
-  install(TARGETS
-    ${LIBNAME}
-    EXPORT CURNG-targets
-    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
-    ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
-  )
-  # Add to list of targets to export
-  set(CURNG_LIBRARIES ${CURNG_LIBRARIES} ${CURNG_NAMESPACE}${LIBNAME}
-    PARENT_SCOPE
-  )
-endfunction()
-
 set(CURNG_VERSION_CPP "${CURNG_GENSRC_DIR}/curng/version.cpp")
 curng_configure_version("${CURNG_VERSION_CPP}")
+message(STATUS "CURNG version: ${CURNG_VERSION_STRING}")
 
 curng_add_library(curng
   PACKAGE curng
-  SOURCE
+  SOURCES
     "${CURNG_VERSION_CPP}"
-  POLYSOURCE
+  POLYSOURCES
     Kernel.cpp
     MultiStateVector.cpp
   )
 
 #---------------------------------------------------------------------------#
-# Configure file
+# Configuration file
+
 set(HAVE_CUDA ${CURNG_USE_CUDA})
 configure_file(
   ${CMAKE_CURRENT_SOURCE_DIR}/cmake/config.h.in
@@ -179,6 +99,7 @@ install(
   REGEX "^(.(cu|cpp)|detail)$" EXCLUDE
 )
 
+# Install configure file
 install(
   FILES "${CURNG_GENSRC_DIR}/curng/config.h"
   DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/curng/"
