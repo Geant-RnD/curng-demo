@@ -81,7 +81,8 @@ function(curng_configure_version OUTPUTFILE)
         OUTPUT_VARIABLE CURNG_VERSION_STRING
         OUTPUT_STRIP_TRAILING_WHITESPACE
         )
-    else()
+    endif()
+    if (NOT CURNG_VERSION_STRING)
       set(CURNG_VERSION_STRING "${CURNG_VERSION}")
     endif()
   endif()
