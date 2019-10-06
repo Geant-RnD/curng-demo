@@ -136,10 +136,10 @@ function(curng_add_library LIBNAME)
 
   add_library(${LIBNAME} ${_SOURCES})
 
-  # Compile C++ code with C++14
+  # Compile C++ code with C++11
   target_compile_features(${LIBNAME}
     PUBLIC
-      cxx_std_14
+      cxx_std_11
   )
 
   target_include_directories(${LIBNAME}
@@ -162,8 +162,8 @@ function(curng_add_library LIBNAME)
   install(TARGETS
     ${LIBNAME}
     EXPORT CURNG-targets
-    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
-    ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
+    LIBRARY DESTINATION "${CMAKE_INSTALL_LIBDIR}"
+    ARCHIVE DESTINATION "${CMAKE_INSTALL_LIBDIR}"
   )
   # Add to list of targets to export
   set(CURNG_LIBRARIES ${CURNG_LIBRARIES} ${CURNG_NAMESPACE}${LIBNAME}
