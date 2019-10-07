@@ -10,7 +10,7 @@
 
 namespace curng
 {
-inline namespace cxx
+namespace cxx
 {
 //---------------------------------------------------------------------------//
 //! Integers with 3 components

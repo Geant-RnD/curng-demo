@@ -1,12 +1,12 @@
-//---------------------------------*-C++-*-----------------------------------//
+// vim: set ft=cuda: -------------*-CUDA-*-----------------------------------//
 /*!
- * \file   curng/MultiStateVector.h
+ * \file   curng/poly/MultiStateVector.h
  * \brief  MultiStateVector declarations.
  * \note   Copyright (c) 2019 Oak Ridge National Laboratory, UT-Battelle, LLC.
  */
 //---------------------------------------------------------------------------//
-#ifndef curng_MultiStateVector_h
-#define curng_MultiStateVector_h
+#ifndef curng_poly_MultiStateVector_h
+#define curng_poly_MultiStateVector_h
 
 #include "Macros.h"
 #include "MultiStateView.h"
@@ -14,7 +14,7 @@
 
 namespace curng
 {
-inline namespace CURNG_LANG
+namespace CURNG_LANG_NS
 {
 //===========================================================================//
 /*!
@@ -39,40 +39,32 @@ class MultiStateVector
     Traits_t::DeviceVector storage_;
 
   public:
-    //! Constructor
-    MultiStateVector(size_type num_particles)
-        : storage_(num_particles)
-    {
-        REQUIRE(num_particles > 0);
-    }
+    // Constructor
+    explicit __host__ MultiStateVector(size_type num_particles);
 
     // Default destructor defined in .cpp file
-    ~MultiStateVector();
+    __host__ ~MultiStateVector();
 
-    //! Copy a chunk of data to the host
-    void get_range(size_type start, size_type stop, HostVector_t& dst)
-    {
-        REQUIRE(start <= stop);
-        REQUIRE(stop <= this->size());
-        dst.assign(storage_.begin() + start, storage_.begin() + stop);
-    }
+    // Copy a chunk of data to the host
+    __host__ void copy_range(size_type start, size_type stop,
+                             HostVector_t::iterator dst);
 
     //! Number of state elements
-    size_type size() const { return storage_.size(); }
+    __host__ size_type size() const { return storage_.size(); }
 
     //! Get a view to the on-device state data
-    MultiStateView view()
+    __host__ MultiStateView view()
     {
         return {raw_pointer_cast(storage_.data()), storage_.size()};
     }
 };
 
 //---------------------------------------------------------------------------//
-} // namespace CURNG_LANG
+} // namespace CURNG_LANG_NS
 } // namespace curng
 
 //---------------------------------------------------------------------------//
-#endif // curng_MultiStateVector_h
+#endif // curng_poly_MultiStateVector_h
 //---------------------------------------------------------------------------//
 // end of MultiStateVector.h
 //---------------------------------------------------------------------------//

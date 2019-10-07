@@ -1,23 +1,19 @@
-//---------------------------------*-C++-*-----------------------------------//
+// vim: set ft=cuda: -------------*-CUDA-*-----------------------------------//
 /*!
- * \file   curng/random.h
- * \brief  random CUDA-device class declarations.
+ * \file   curng/poly/CudaTypes.h
+ * \brief  Cuda types
  * \note   Copyright (c) 2019 Oak Ridge National Laboratory, UT-Battelle, LLC.
  */
 //---------------------------------------------------------------------------//
-#ifndef curng_include_curng_random_cuh
-#define curng_include_curng_random_cuh
+#ifndef curng_poly_CudaTypes_h
+#define curng_poly_CudaTypes_h
 
-#include "Macros.h"
-
-#ifdef __CUDACC__
-#include "cuda/random.cuh"
-#else
-#include "cpp/random.h"
+#if !defined(__CUDACC__)
+#include "cxx/CudaTypes.h"
 #endif
 
 //---------------------------------------------------------------------------//
-#endif // curng_include_curng_random_cuh
+#endif // curng_poly_CudaTypes_h
 //---------------------------------------------------------------------------//
-// end of random.h
+// end of src/curng/CudaTypes.h
 //---------------------------------------------------------------------------//

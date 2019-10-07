@@ -9,9 +9,9 @@
 /*!{*/
 /*! Version info configured by cmake into the build directory. */
 extern "C" const char curng_version[];
-extern "C" const int curng_version_major;
-extern "C" const int curng_version_minor;
-extern "C" const int curng_version_patch;
+extern "C" const int  curng_version_major;
+extern "C" const int  curng_version_minor;
+extern "C" const int  curng_version_patch;
 /*!}*/
 
 #endif // curng_Version_h

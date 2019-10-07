@@ -24,7 +24,7 @@
 
 namespace curng
 {
-inline namespace cxx
+namespace cxx
 {
 //---------------------------------------------------------------------------//
 
@@ -36,7 +36,7 @@ constexpr __forceinline__ dim3 UnitDim3()
 
 constexpr __forceinline__ uint3 ZeroUint3()
 {
-    return {0,0,0};
+    return {0, 0, 0};
 }
 
 constexpr __forceinline__ int UnitInt()

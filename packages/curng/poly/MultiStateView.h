@@ -1,12 +1,12 @@
 // vim: set ft=cuda: -------------*-CUDA-*-----------------------------------//
 /*!
- * \file   curng/MultiStateView.h
+ * \file   curng/poly/MultiStateView.h
  * \brief  MultiStateView declarations.
  * \note   Copyright (c) 2019 Oak Ridge National Laboratory, UT-Battelle, LLC.
  */
 //---------------------------------------------------------------------------//
-#ifndef curng_MultiStateView_h
-#define curng_MultiStateView_h
+#ifndef curng_poly_MultiStateView_h
+#define curng_poly_MultiStateView_h
 
 #include "Macros.h"
 #include "DeviceTraits.h"
@@ -14,7 +14,7 @@
 
 namespace curng
 {
-inline namespace CURNG_LANG
+namespace CURNG_LANG_NS
 {
 class MultiStateVector;
 //===========================================================================//
@@ -29,7 +29,7 @@ class MultiStateView
   public:
     //@{
     //! Public types
-    using Traits_t = DeviceTraits<int>;
+    using Traits_t            = DeviceTraits<int>;
     using value_type          = Traits_t::value_type;
     using device_pointer_type = Traits_t::pointer_type;
     using size_type           = Traits_t::size_type;
@@ -40,13 +40,10 @@ class MultiStateView
     size_type           size_;
 
   public:
-    MultiStateView(const MultiStateView&) = default;
+    __host__ __device__ MultiStateView(const MultiStateView&) = default;
 
     //! Number of states being stored
-    __host__ __device__ size_type size() const
-    {
-        return size_;
-    }
+    __host__ __device__ size_type size() const { return size_; }
 
     //! Access a single state
     __host__ __device__ StateView operator[](size_type index) const
@@ -69,11 +66,11 @@ class MultiStateView
 };
 
 //---------------------------------------------------------------------------//
-} // namespace CURNG_LANG
+} // namespace CURNG_LANG_NS
 } // namespace curng
 
 //---------------------------------------------------------------------------//
-#endif // curng_MultiStateView_h
+#endif // curng_poly_MultiStateView_h
 //---------------------------------------------------------------------------//
 // end of MultiStateView.h
 //---------------------------------------------------------------------------//

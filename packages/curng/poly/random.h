@@ -1,25 +1,23 @@
 //---------------------------------*-C++-*-----------------------------------//
 /*!
- * \file   curng/MultiStateVector.cpp
- * \brief  MultiStateVector class definitions.
+ * \file   curng/poly/random.h
+ * \brief  random CUDA-device class declarations.
  * \note   Copyright (c) 2019 Oak Ridge National Laboratory, UT-Battelle, LLC.
  */
 //---------------------------------------------------------------------------//
+#ifndef curng_include_curng_random_cuh
+#define curng_include_curng_random_cuh
 
-#include "MultiStateVector.h"
+#include "Macros.h"
 
-namespace curng
-{
-inline namespace CURNG_LANG
-{
-//---------------------------------------------------------------------------//
-//! Default destructor
-MultiStateVector::~MultiStateVector() = default;
-
-//---------------------------------------------------------------------------//
-} // namespace CURNG_LANG
-} // namespace curng
+#ifdef __CUDACC__
+#include "../cuda/random.cuh"
+#else
+#include "../cxx/random.h"
+#endif
 
 //---------------------------------------------------------------------------//
-// end of curng/MultiStateVector.cpp
+#endif // curng_include_curng_random_cuh
+//---------------------------------------------------------------------------//
+// end of random.h
 //---------------------------------------------------------------------------//

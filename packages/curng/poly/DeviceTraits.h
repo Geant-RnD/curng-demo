@@ -1,18 +1,18 @@
-//---------------------------------*-C++-*-----------------------------------//
+// vim: set ft=cuda: -------------*-CUDA-*-----------------------------------//
 /*!
- * \file   curng/DeviceTraits.h
+ * \file   curng/poly/DeviceTraits.h
  * \brief  DeviceTraits declarations.
  * \note   Copyright (c) 2019 Oak Ridge National Laboratory, UT-Battelle, LLC.
  */
 //---------------------------------------------------------------------------//
-#ifndef curng_DeviceTraits_h
-#define curng_DeviceTraits_h
+#ifndef curng_poly_DeviceTraits_h
+#define curng_poly_DeviceTraits_h
 
 #include <cstddef>
 
 namespace curng
 {
-inline namespace CURNG_LANG
+namespace CURNG_LANG_NS
 {
 //===========================================================================//
 /*!
@@ -31,11 +31,11 @@ struct DeviceTraits
 };
 
 //---------------------------------------------------------------------------//
-} // namespace CURNG_LANG
+} // namespace CURNG_LANG_NS
 } // namespace curng
 
 //---------------------------------------------------------------------------//
-#endif // curng_DeviceTraits_h
+#endif // curng_poly_DeviceTraits_h
 //---------------------------------------------------------------------------//
 // end of curng/DeviceTraits.h
 //---------------------------------------------------------------------------//

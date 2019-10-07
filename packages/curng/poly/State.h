@@ -1,12 +1,12 @@
-//--------------------------------*-CUDA-*-----------------------------------//
+// vim: set ft=cuda: -------------*-CUDA-*-----------------------------------//
 /*!
- * \file   curng/State.h
+ * \file   curng/poly/State.h
  * \brief  State class.
  * \note   Copyright (c) 2019 Oak Ridge National Laboratory, UT-Battelle, LLC.
  */
 //---------------------------------------------------------------------------//
-#ifndef curng_State_h
-#define curng_State_h
+#ifndef curng_poly_State_h
+#define curng_poly_State_h
 
 #include "Macros.h"
 #include "Types.h"
@@ -14,7 +14,7 @@
 
 namespace curng
 {
-inline namespace CURNG_LANG
+namespace CURNG_LANG_NS
 {
 //===========================================================================//
 /*!
@@ -48,11 +48,11 @@ class State
 };
 
 //---------------------------------------------------------------------------//
-} // namespace CURNG_LANG
+} // namespace CURNG_LANG_NS
 } // namespace curng
 
 //---------------------------------------------------------------------------//
-#endif // curng_State_h
+#endif // curng_poly_State_h
 //---------------------------------------------------------------------------//
 // end of curng/State.h
 //---------------------------------------------------------------------------//

@@ -1,6 +1,6 @@
 // vim: set ft=cuda: -------------*-CUDA-*-----------------------------------//
 /*!
- * \file   curng/Kernel.cpp
+ * \file   curng/poly/Kernel.cpp
  * \brief  Kernel class definitions.
  * \note   Copyright (c) 2019 Oak Ridge National Laboratory, UT-Battelle, LLC.
  */
@@ -10,12 +10,12 @@
 
 #include "Macros.h"
 #include "DeviceVars.h"
-#include "KernelParams.h"
 #include "MultiStateView.h"
+#include "../Params.h"
 
 namespace curng
 {
-inline namespace CURNG_LANG
+namespace CURNG_LANG_NS
 {
 //---------------------------------------------------------------------------//
 __device__ void kernel_impl(StateView state)
@@ -30,30 +30,29 @@ __global__ void execute_kernel(MultiStateView view)
     // When running on device, the "stride" is the number of simultaneous
     // threads.
     const int stride = blockDim.x * gridDim.x;
-    const int end = view.size();
-    for (int i = blockIdx.x * blockDim.x + threadIdx.x; i < end;
-         i += stride)
+    const int end    = view.size();
+    for (int i = blockIdx.x * blockDim.x + threadIdx.x; i < end; i += stride)
     {
         kernel_impl(view[i]);
     }
 }
 
 //---------------------------------------------------------------------------//
-__host__ void launch_kernel(MultiStateView view, KernelParams params)
+__host__ void launch_kernel(MultiStateView view, const Params& params)
 {
 #ifdef __CUDACC__
     REQUIRE(params.blocks > 0 && params.threads_per_block >= 32);
-    REQUIRE(params.target == KernelParams::kDevice);
+    REQUIRE(params.target == Params::kDevice);
     execute_kernel<<<params.blocks, params.threads_per_block>>>(view);
 #else
-    REQUIRE(params.target == KernelParams::kHost);
+    REQUIRE(params.target == Params::kHost);
     REQUIRE(params.blocks == 1 && params.threads_per_block == 1);
     execute_kernel(view);
 #endif
 }
 
 //---------------------------------------------------------------------------//
-} // namespace CURNG_LANG
+} // namespace CURNG_LANG_NS
 } // namespace curng
 
 //---------------------------------------------------------------------------//

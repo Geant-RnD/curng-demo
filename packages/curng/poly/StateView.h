@@ -1,19 +1,19 @@
 // vim: set ft=cuda: -------------*-CUDA-*-----------------------------------//
 /*!
- * \file   curng/StateView.h
+ * \file   curng/poly/StateView.h
  * \brief  StateReference declarations.
  * \note   Copyright (c) 2019 Oak Ridge National Laboratory, UT-Battelle, LLC.
  */
 //---------------------------------------------------------------------------//
-#ifndef curng_StateView_h
-#define curng_StateView_h
+#ifndef curng_poly_StateView_h
+#define curng_poly_StateView_h
 
 #include "Macros.h"
 #include "DeviceTraits.h"
 
 namespace curng
 {
-inline namespace CURNG_LANG
+namespace CURNG_LANG_NS
 {
 class MultiStateView;
 //===========================================================================//
@@ -42,7 +42,6 @@ class StateView
     pointer_type data_;
 
   public:
-
     StateView(const StateView&) = default;
 
     __host__ __device__ value_type get() const { return *data_; }
@@ -60,11 +59,11 @@ class StateView
 };
 
 //---------------------------------------------------------------------------//
-} // namespace curng
+} // namespace CURNG_LANG_NS
 } // namespace curng
 
 //---------------------------------------------------------------------------//
-#endif // curng_StateView_h
+#endif // curng_poly_StateView_h
 //---------------------------------------------------------------------------//
 // end of StateView.h
 //---------------------------------------------------------------------------//

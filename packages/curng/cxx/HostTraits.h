@@ -12,7 +12,7 @@
 
 namespace curng
 {
-inline namespace cxx
+namespace cxx
 {
 //===========================================================================//
 /*!

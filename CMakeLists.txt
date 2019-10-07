@@ -74,9 +74,11 @@ curng_add_library(curng
   PACKAGE curng
   SOURCES
     "${CURNG_VERSION_CPP}"
+    Runner.cpp
   POLYSOURCES
-    Kernel.cpp
-    MultiStateVector.cpp
+    poly/Kernel.cpp
+    poly/MultiStateVector.cpp
+    poly/RunnerImpl.cpp
   )
 
 #---------------------------------------------------------------------------#
@@ -92,11 +94,11 @@ configure_file(
 # INSTALLATION
 #---------------------------------------------------------------------------#
 
-# Install header files
+# Install header files from *root* directory only
 install(
   DIRECTORY "${CURNG_SRC_DIR}/"
   DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}"
-  REGEX "^(.(cu|cpp)|detail)$" EXCLUDE
+  FILES_MATCHING PATTERN "*.h"
 )
 
 # Install configure file

@@ -1,39 +1,52 @@
 //---------------------------------*-C++-*-----------------------------------//
 /*!
- * \file   curng/KernelParams.h
- * \brief  KernelParams declarations.
+ * \file   curng/Runner.h
+ * \brief  Runner declarations.
  * \note   Copyright (c) 2019 Oak Ridge National Laboratory, UT-Battelle, LLC.
  */
 //---------------------------------------------------------------------------//
-#ifndef curng_KernelParams_h
-#define curng_KernelParams_h
+#ifndef curng_Runner_h
+#define curng_Runner_h
+
+#include <memory>
+
+#include "Params.h"
 
 namespace curng
 {
 //===========================================================================//
 /*!
- * \struct KernelParams
- * \brief Parameters for launching and working with the kernel.
+ * \class Runner
+ * \brief Abstract base class for running the code.
+ *
+ * Derived classes in the CUDA/CXX namespaces actually implement this
+ * interface.
  */
 //===========================================================================//
 
-struct KernelParams
+class Runner
 {
-    enum KernelType {
-        kHost,
-        kDevice
-    };
+  public:
+    using result_type = void;
 
-    int blocks = 0;
-    int threads_per_block = 0;
-    KernelType target = kHost;
+  public:
+    virtual ~Runner();
+
+    // Run a batch
+    virtual result_type operator()() = 0;
 };
+
+//---------------------------------------------------------------------------//
+/*!
+ * \brief Factory class for Runner.
+ */
+std::unique_ptr<Runner> MakeRunner(Params p);
 
 //---------------------------------------------------------------------------//
 } // namespace curng
 
 //---------------------------------------------------------------------------//
-#endif // curng_KernelParams_h
+#endif // curng_Runner_h
 //---------------------------------------------------------------------------//
-// end of curng/KernelParams.h
+// end of curng/Runner.h
 //---------------------------------------------------------------------------//

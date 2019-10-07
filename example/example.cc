@@ -7,44 +7,33 @@
 //---------------------------------------------------------------------------//
 
 #include "curng/config.h"
-#include "curng/Kernel.h"
-#include "curng/KernelParams.h"
-#include "curng/MultiStateVector.h"
+#include "curng/Params.h"
+#include "curng/Runner.h"
 
 #include <iostream>
+#include <string>
+#include <vector>
 
-int main(int , char* [])
+using curng::Params;
+
+Params process_args(std::vector<std::string> args)
 {
-    using curng::KernelParams;
+    (void)sizeof(args);
+    return {};
+}
+
+int main(int argc, char* argv[])
+{
     using std::cerr;
     using std::endl;
 
-    int num_particles = 100;
-    curng::MultiStateVector vec(num_particles);
-    KernelParams kernel;
-#ifdef HAVE_CUDA
-    kernel.target = KernelParams::kDevice;
-    kernel.blocks = 4;
-    kernel.threads_per_block = 32;
-#else
-    kernel.target = KernelParams::kHost;
-    kernel.blocks = 1;
-    kernel.threads_per_block = 1;
-#endif
-
-    switch (kernel.target)
+    auto run = curng::MakeRunner(process_args({argv + 1, argv + argc}));
+    if (!run)
     {
-        case KernelParams::kDevice:
-#ifdef HAVE_CUDA
-            break;
-#else
-            cerr << "Can't run on device: CUDA is not enabled" << endl;
-            return 1;
-#endif
-        case KernelParams::kHost:
-            break;
+        return 1;
     }
 
+    (*run)();
     return 0;
 }
 

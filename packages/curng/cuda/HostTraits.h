@@ -14,7 +14,7 @@
 
 namespace curng
 {
-inline namespace cuda
+namespace cuda
 {
 template<class T>
 struct HostTraits
