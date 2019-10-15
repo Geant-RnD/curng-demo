@@ -5,7 +5,7 @@
 #[=======================================================================[.rst:
 
 CURNGUtils
------------------
+----------
 
 Utility commands for the CURNG example project.
 
@@ -14,10 +14,10 @@ Utility commands for the CURNG example project.
   Create a new library with C++ and CUDA sources::
 
     curng_add_library(<name>
-                     [PACKAGE <package_name>]
-                     [SOURCES <file>...]
-                     [POLYSOURCES <file>...]
-                     )
+                      [PACKAGE <package_name>]
+                      [SOURCES <file>...]
+                      [POLYSOURCES <file>...]
+                      )
 
 
   ``PACKAGE``

@@ -51,7 +51,7 @@ auto RunnerImpl::operator()() -> result_type
     const size_type max_size   = params_.size;
     const size_type chunk_size = params_.chunk_size;
     size_type       start      = 0;
-    size_type       stop       = std::min(max_size, start + chunk_size);
+    size_type       stop       = std::min(max_size, chunk_size);
     while (start != stop)
     {
         // Copy data

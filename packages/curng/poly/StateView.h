@@ -18,7 +18,7 @@ namespace CURNG_LANG_NS
 class MultiStateView;
 //===========================================================================//
 /*!
- * \struct StateView
+ * \class StateView
  * \brief *On-device* view to a single State.
  *
  * This is constructed from a State and should be passed directly into device
